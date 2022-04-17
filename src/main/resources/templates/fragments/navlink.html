@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head></head>
+
+    <body>
+        <a
+            class="nav-link"
+            th:fragment="navlink(link,text,match1,match2)"
+            th:href="@{${link}}"
+            th:text="${text}"
+            th:classappend="${match1 == match2} ? 'active disabled' : '' "
+        ></a>
+    </body>
+</html>

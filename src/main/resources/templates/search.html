@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:include="fragments/head :: head(Search)"></th:block>
+    </head>
+
+    <body>
+        <!-- NAV SECTION -->
+        <th:block th:replace="fragments/navbar :: navbar(2)"></th:block>
+        <!--END NAV SECTION -->
+
+        <!-- SEARCH SECTION -->
+        <section>
+            <div class="container my-3 py-3">
+                <form class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating">
+                            <input
+                                name="from"
+                                id="from"
+                                type="text"
+                                class="form-control"
+                                placeholder="city"
+                                required
+                            />
+                            <label for="from">Source City</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-floating">
+                            <input
+                                name="to"
+                                id="to"
+                                type="text"
+                                class="form-control"
+                                placeholder="city"
+                                required
+                            />
+                            <label for="to">Destination City</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!-- END SEARCH SECTION -->
+
+        <!-- RESULTS SECTION -->
+        <div class="vh-100" th:unless="${isSearch}"></div>
+        <section th:if="${isSearch}">
+            <div class="container my-3 py-3">
+                <h2 class="mx-auto text-warning text-center py-3 mb-5">
+                    You searched for flights
+                    <br />
+                    from
+                    <span class="text-info" th:text="${from}"></span>
+                    to
+                    <span class="text-info" th:text="${to}"></span>
+                </h2>
+                <div th:if="${flights.size() > 0}" class="my-3">
+                    <h3 class="text-danger">Direct Flights</h3>
+                    <div th:replace="fragments/directflights :: flights"></div>
+                </div>
+                <div th:if="${leggedflights.size() > 0}" class="my-3">
+                    <h3 class="text-danger">Flights with Legs</h3>
+                    <div
+                        th:replace="fragments/indirectflights :: flights"
+                    ></div>
+                </div>
+                <div
+                    th:unless="${flights.size() > 0 || leggedflights.size() > 0}"
+                >
+                    <h3 class="text-danger text-center">No results found</h3>
+                </div>
+            </div>
+        </section>
+        <!-- END RESULTS SECTION -->
+
+        <!--FOOTER SECTION -->
+        <th:block th:replace="fragments/footer :: footer"></th:block>
+        <!-- END FOOTER SECTION -->
+    </body>
+</html>

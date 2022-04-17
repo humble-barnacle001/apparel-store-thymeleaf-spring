@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head></head>
+
+    <body>
+        <th:block th:fragment="navbar(current)">
+            <nav
+                class="navbar fixed-top navbar-expand-lg navbar-light bg-light border-bottom border-3"
+            >
+                <div class="container-fluid">
+                    <a
+                        class="navbar-brand mb-0 h1 text-primary fw-bold"
+                        href="/"
+                    >
+                        Apparel Store
+                    </a>
+                    <button
+                        type="button"
+                        class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarSupportedContent"
+                    >
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <span
+                                th:replace="fragments/navlink :: navlink('/new-arrivals','New Arrivals',${current},0)"
+                            ></span>
+                            <span
+                                th:replace="fragments/navlink :: navlink('/current-sale','On Sale',${current},1)"
+                            ></span>
+                            <span
+                                th:replace="fragments/navlink :: navlink('/search','Search',${current},2)"
+                            ></span>
+                            <span
+                                th:replace="fragments/navlink :: navlink('/orders','Orders',${current},3)"
+                            ></span>
+                            <span
+                                th:replace="fragments/navlink :: navlink( ${isLoggedIn} ? '/logout' : '/auth' , ${isLoggedIn} ? 'LogOut' : 'Login/SignUp', ${current}, 4)"
+                            ></span>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Fixes issue with fixed navbar -->
+            <div class="pb-5 mb-5"></div>
+        </th:block>
+    </body>
+</html>

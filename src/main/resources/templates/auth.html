@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block
+            th:include="fragments/head :: head('Login/SignUp')"
+        ></th:block>
+        <link href="/css/login.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <!-- NAV SECTION -->
+        <th:block th:replace="fragments/navbar :: navbar(4)"></th:block>
+        <!--END NAV SECTION -->
+
+        <!--AUTH SECTION-->
+        <main class="container">
+            <!-- <div class="section">
+            <div class="container"> -->
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center">
+                    <div class="py-5 pt-sm-2 text-center">
+                        <h6 class="pb-1 fw-bold">
+                            <span>Log In</span>
+                            <span class="px-3"></span>
+                            <span>Sign Up</span>
+                        </h6>
+
+                        <input
+                            class="custom-checkbox d-none"
+                            type="checkbox"
+                            id="reg-log"
+                            name="reg-log"
+                        />
+                        <label for="reg-log"><i class="bi"></i></label>
+
+                        <div class="card-3d-wrap mx-auto mt-5">
+                            <div class="card-3d-wrapper">
+                                <div class="card card-front">
+                                    <div class="center-wrap">
+                                        <div class="text-center">
+                                            <h4 class="mb-4 pb-3 fw-bolder">
+                                                Log In
+                                            </h4>
+                                            <!-- TODO: SET ACTION PARAMETER PROPERLY -->
+                                            <form
+                                                name="LoginForm"
+                                                method="post"
+                                                action="/login"
+                                            >
+                                                <div class="custom-input-group">
+                                                    <input
+                                                        required
+                                                        type="email"
+                                                        name="email"
+                                                        class="form-style"
+                                                        placeholder="Your Email"
+                                                        id="loginemail"
+                                                        autocomplete="email"
+                                                    />
+                                                    <i
+                                                        class="input-icon bi bi-envelope"
+                                                    ></i>
+                                                </div>
+                                                <div
+                                                    class="custom-input-group mt-2"
+                                                >
+                                                    <input
+                                                        required
+                                                        type="password"
+                                                        name="pass"
+                                                        class="form-style"
+                                                        placeholder="Your Password"
+                                                        id="loginpass"
+                                                        autocomplete="current-password"
+                                                    />
+                                                    <i
+                                                        class="input-icon bi bi-lock"
+                                                    ></i>
+                                                </div>
+                                                <input
+                                                    type="submit"
+                                                    value="Submit"
+                                                    class="submit-btn mt-4 text-uppercase px-4 fw-bold d-inline-flex text-center justify-content-center align-items-center border-0"
+                                                />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card card-back">
+                                    <div class="center-wrap">
+                                        <div class="text-center">
+                                            <h4 class="mb-4 pb-3 fw-bolder">
+                                                Sign Up
+                                            </h4>
+                                            <!-- TODO: SET ACTION PARAMETER PROPERLY -->
+                                            <form
+                                                name="RegisterForm"
+                                                method="post"
+                                                action="/signup"
+                                            >
+                                                <div class="custom-input-group">
+                                                    <input
+                                                        required
+                                                        type="text"
+                                                        name="name"
+                                                        class="form-style"
+                                                        placeholder="Your Full Name"
+                                                        id="regname"
+                                                        autocomplete="name"
+                                                    />
+                                                    <i
+                                                        class="input-icon bi bi-person"
+                                                    ></i>
+                                                </div>
+                                                <div
+                                                    class="custom-input-group mt-2"
+                                                >
+                                                    <input
+                                                        required
+                                                        type="email"
+                                                        name="email"
+                                                        class="form-style"
+                                                        placeholder="Your Email"
+                                                        id="regemail"
+                                                        autocomplete="email"
+                                                    />
+                                                    <i
+                                                        class="input-icon bi bi-envelope"
+                                                    ></i>
+                                                </div>
+                                                <div
+                                                    class="custom-input-group mt-2"
+                                                >
+                                                    <input
+                                                        required
+                                                        type="password"
+                                                        name="pass"
+                                                        class="form-style"
+                                                        placeholder="Your Password"
+                                                        id="regpass"
+                                                        autocomplete="new-password"
+                                                    />
+                                                    <i
+                                                        class="input-icon bi bi-lock"
+                                                    ></i>
+                                                </div>
+                                                <input
+                                                    type="submit"
+                                                    value="Submit"
+                                                    class="submit-btn mt-4 text-uppercase px-4 fw-bold d-inline-flex text-center justify-content-center align-items-center border-0"
+                                                />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!--END AUTH SECTION-->
+
+        <!--FOOTER SECTION -->
+        <th:block th:replace="fragments/footer :: footer"></th:block>
+        <!-- END FOOTER SECTION -->
+    </body>
+</html>
