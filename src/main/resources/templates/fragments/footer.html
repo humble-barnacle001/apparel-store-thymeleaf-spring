@@ -11,7 +11,7 @@
                     <div class="col-md-6 col-lg-4 d-flex justify-content-end">
                         <span class="text-muted">
                             &copy;
-                            <span th:text="${date}"></span>
+                            <span id="footer-copy-date"></span>
                             Apparel Store | All Rights Reserved
                         </span>
                     </div>
@@ -20,6 +20,10 @@
             <script
                 src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             ></script>
+            <script>
+                document.getElementById("footer-copy-date").innerText =
+                    new Date().getFullYear();
+            </script>
         </th:block>
     </body>
 </html>
