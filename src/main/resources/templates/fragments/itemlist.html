@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head></head>
+    <body>
+        <div
+            th:fragment="itemlist(items)"
+            th:each="item:${items}"
+            th:id="'sale-item-' + ${item.getId()}"
+            class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-stretch"
+        >
+            <div th:replace="fragments/itemcard :: itemcard(${item})"></div>
+        </div>
+    </body>
+</html>
