@@ -7,7 +7,7 @@
                 <div class="text-center">
                     <h4 class="mb-4 pb-3 fw-bolder">Log In</h4>
                     <!-- TODO: SET ACTION PARAMETER PROPERLY -->
-                    <form name="LoginForm" method="post" th:action="@{/auth}">
+                    <form name="LoginForm" method="post" th:action="@{/login}">
                         <div class="custom-input-group">
                             <input
                                 required
@@ -47,7 +47,11 @@
                 <div class="text-center">
                     <h4 class="mb-4 pb-3 fw-bolder">Sign Up</h4>
                     <!-- TODO: SET ACTION PARAMETER PROPERLY -->
-                    <form name="RegisterForm" method="post" action="/signup">
+                    <form
+                        name="RegisterForm"
+                        method="post"
+                        th:action="@{/register}"
+                    >
                         <div class="custom-input-group">
                             <input
                                 required
