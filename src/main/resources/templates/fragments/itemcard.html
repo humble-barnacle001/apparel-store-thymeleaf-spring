@@ -4,7 +4,7 @@
     <body>
         <div class="col-6">
             <div
-                class="card"
+                class="card mx-auto"
                 th:classappend="${onSoldPage} ? 'flex-column-reverse' : ''"
                 th:fragment="itemcard(item)"
             >
@@ -13,7 +13,7 @@
                     th:src="'https://source.unsplash.com/random/400x300?shirt&sig=' + ${#strings.randomAlphanumeric(10)}"
                     class="card-img-top"
                     alt="Apparel photo"
-                    th:unless="${isAdmin}"
+                    sec:authorize="hasRole('USER')"
                 />
                 <div class="card-body d-flex flex-column">
                     <div class="text-end">
@@ -53,6 +53,7 @@
                             th:href="@{/buy/{itemId}(itemId=${item.getId()})}"
                             class="btn btn-primary"
                             th:unless="${onSoldPage}"
+                            sec:authorize="hasRole('ROLE_USER')"
                         >
                             <i class="bi bi-cart-plus"></i>
                         </a>
