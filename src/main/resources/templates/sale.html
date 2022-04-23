@@ -9,7 +9,7 @@
 
     <body>
         <!-- NAV SECTION -->
-        <th:block th:replace="fragments/navbar :: navbar(1)"></th:block>
+        <th:block th:replace="fragments/nav/navbar :: navbar(1)"></th:block>
         <!--END NAV SECTION -->
 
         <section>
@@ -17,7 +17,7 @@
                 <h2 class="text-center">All Offers</h2>
                 <div class="row" id="sale">
                     <div
-                        th:replace="fragments/itemlist :: itemlist(${sale})"
+                        th:replace="fragments/item/itemlist :: itemlist(${sale})"
                     ></div>
                 </div>
             </div>

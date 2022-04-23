@@ -31,20 +31,20 @@
                     >
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <span
-                                th:replace="fragments/navlink :: navlink('/new-arrivals','New Arrivals',${current},0)"
+                                th:replace="fragments/nav/navlink :: navlink('/new-arrivals','New Arrivals',${current},0)"
                             ></span>
                             <span
-                                th:replace="fragments/navlink :: navlink('/current-sale','On Sale',${current},1)"
+                                th:replace="fragments/nav/navlink :: navlink('/current-sale','On Sale',${current},1)"
                             ></span>
                             <span
-                                th:replace="fragments/navlink :: navlink('/search','Search',${current},2)"
+                                th:replace="fragments/nav/navlink :: navlink('/search','Search',${current},2)"
                             ></span>
                             <span
-                                th:replace="fragments/navlink :: navlink('/orders','Orders',${current},3)"
+                                th:replace="fragments/nav/navlink :: navlink('/orders','Orders',${current},3)"
                             ></span>
                             <span
                                 sec:authorize="isAnonymous()"
-                                th:replace="fragments/navlink :: navlink('/auth','Login/SignUp',${current},4)"
+                                th:replace="fragments/nav/navlink :: navlink('/auth','Login/SignUp',${current},4)"
                             ></span>
                             <form
                                 sec:authorize="isAuthenticated()"
@@ -56,7 +56,7 @@
                                     onclick="event.preventDefault();this.closest('form').submit();"
                                 >
                                     <span
-                                        th:replace="fragments/navlink :: navlink('/logout','LogOut',${current},-1)"
+                                        th:replace="fragments/nav/navlink :: navlink('/logout','LogOut',${current},-1)"
                                     ></span>
                                 </span>
                             </form>

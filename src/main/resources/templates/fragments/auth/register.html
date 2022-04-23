@@ -2,46 +2,6 @@
 <html lang="en">
     <head></head>
     <body>
-        <div class="card card-front" th:fragment="login">
-            <div class="center-wrap">
-                <div class="text-center">
-                    <h4 class="mb-4 pb-3 fw-bolder">Log In</h4>
-                    <!-- TODO: SET ACTION PARAMETER PROPERLY -->
-                    <form name="LoginForm" method="post" th:action="@{/login}">
-                        <div class="custom-input-group">
-                            <input
-                                required
-                                type="email"
-                                name="username"
-                                class="form-style"
-                                placeholder="Your Email"
-                                id="loginemail"
-                                autocomplete="email"
-                            />
-                            <i class="input-icon bi bi-envelope"></i>
-                        </div>
-                        <div class="custom-input-group mt-2">
-                            <input
-                                required
-                                type="password"
-                                name="password"
-                                class="form-style"
-                                placeholder="Your Password"
-                                id="loginpass"
-                                autocomplete="current-password"
-                            />
-                            <i class="input-icon bi bi-lock"></i>
-                        </div>
-                        <input
-                            type="submit"
-                            value="Submit"
-                            class="submit-btn mt-4 text-uppercase px-4 fw-bold d-inline-flex text-center justify-content-center align-items-center border-0"
-                        />
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div class="card card-back" th:fragment="register">
             <div class="center-wrap">
                 <div class="text-center">

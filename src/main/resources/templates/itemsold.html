@@ -10,7 +10,7 @@
 
     <body>
         <!-- NAV SECTION -->
-        <th:block th:replace="fragments/navbar :: navbar(-2)"></th:block>
+        <th:block th:replace="fragments/nav/navbar :: navbar(-2)"></th:block>
         <!--END NAV SECTION -->
 
         <section>
@@ -21,7 +21,7 @@
                     </h2>
                     <div class="row" id="sold">
                         <div
-                            th:replace="fragments/itemcard :: itemcard(${item.get()})"
+                            th:replace="fragments/item/itemcard :: itemcard(${item.get()})"
                         ></div>
                     </div>
                 </th:block>

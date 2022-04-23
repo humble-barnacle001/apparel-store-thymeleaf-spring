@@ -10,11 +10,12 @@
 
     <body>
         <!-- NAV SECTION -->
-        <th:block th:replace="fragments/navbar :: navbar(4)"></th:block>
+        <th:block th:replace="fragments/nav/navbar :: navbar(4)"></th:block>
         <!--END NAV SECTION -->
 
         <!--AUTH SECTION-->
         <main class="container">
+            <!--AUTH ALERTS SECTION-->
             <div
                 class="alert alert-danger alert-dismissible fade show"
                 role="alert"
@@ -31,7 +32,6 @@
                     aria-label="Close"
                 ></button>
             </div>
-
             <div
                 class="alert alert-success alert-dismissible fade show"
                 role="alert"
@@ -48,6 +48,7 @@
                     aria-label="Close"
                 ></button>
             </div>
+            <!--END AUTH ALERTS SECTION-->
 
             <div class="row full-height justify-content-center">
                 <div class="col-12 text-center align-self-center">
@@ -68,9 +69,11 @@
 
                         <div class="card-3d-wrap mx-auto mt-5">
                             <div class="card-3d-wrapper">
-                                <div th:replace="fragments/auth :: login"></div>
                                 <div
-                                    th:replace="fragments/auth :: register"
+                                    th:replace="fragments/auth/login :: login"
+                                ></div>
+                                <div
+                                    th:replace="fragments/auth/register :: register"
                                 ></div>
                             </div>
                         </div>
