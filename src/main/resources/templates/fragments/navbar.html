@@ -43,8 +43,23 @@
                                 th:replace="fragments/navlink :: navlink('/orders','Orders',${current},3)"
                             ></span>
                             <span
-                                th:replace="fragments/navlink :: navlink( ${isLoggedIn} ? '/logout' : '/auth' , ${isLoggedIn} ? 'LogOut' : 'Login/SignUp', ${current}, 4)"
+                                sec:authorize="isAnonymous()"
+                                th:replace="fragments/navlink :: navlink('/auth','Login/SignUp',${current},4)"
                             ></span>
+                            <form
+                                sec:authorize="isAuthenticated()"
+                                th:action="@{/logout}"
+                                method="post"
+                            >
+                                <span
+                                    class="m-0 p-0"
+                                    onclick="event.preventDefault();this.closest('form').submit();"
+                                >
+                                    <span
+                                        th:replace="fragments/navlink :: navlink('/logout','LogOut',${current},-1)"
+                                    ></span>
+                                </span>
+                            </form>
                         </ul>
                     </div>
                 </div>
