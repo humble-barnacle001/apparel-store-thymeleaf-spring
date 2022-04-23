@@ -3,7 +3,11 @@
     <head></head>
     <body>
         <div class="col-6">
-            <div class="card" th:fragment="itemcard(item)">
+            <div
+                class="card"
+                th:classappend="${onSoldPage} ? 'flex-column-reverse' : ''"
+                th:fragment="itemcard(item)"
+            >
                 <img
                     src="https://source.unsplash.com/random/400x300?shirt"
                     th:src="'https://source.unsplash.com/random/400x300?shirt&sig=' + ${#strings.randomAlphanumeric(10)}"
@@ -46,13 +50,17 @@
                     </p>
                     <div class="text-end mt-auto">
                         <a
-                            href="#"
+                            th:href="@{/buy/{itemId}(itemId=${item.getId()})}"
                             class="btn btn-primary"
-                            th:unless="${isAdmin}"
+                            th:unless="${onSoldPage}"
                         >
                             <i class="bi bi-cart-plus"></i>
                         </a>
-                        <a href="#" class="btn btn-danger" th:if="${isAdmin}">
+                        <a
+                            href="#"
+                            class="ms-auto btn btn-danger"
+                            sec:authorize="hasRole('ROLE_ADMIN')"
+                        >
                             <i class="bi bi-trash3"></i>
                         </a>
                     </div>

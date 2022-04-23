@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:include="fragments/head :: head('Buy Results')"></th:block>
+        <!-- REDIRECT TO HOME IN 10 seconds -->
+        <meta http-equiv="refresh" content="10;url=/" />
+        <link href="/css/login.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <!-- NAV SECTION -->
+        <th:block th:replace="fragments/navbar :: navbar(-2)"></th:block>
+        <!--END NAV SECTION -->
+
+        <section>
+            <div class="container my-3 py-3">
+                <th:block th:if="${item.isPresent()}">
+                    <h2 class="text-center text-success py-3">
+                        You bought the item
+                    </h2>
+                    <div class="row" id="sold">
+                        <div
+                            th:replace="fragments/itemcard :: itemcard(${item.get()})"
+                        ></div>
+                    </div>
+                </th:block>
+                <th:block th:unless="${item.isPresent()}">
+                    <h2 class="text-center text-danger py-5">Item not found</h2>
+                </th:block>
+                <div class="mt-5 text-end">
+                    <a href="/" class="btn btn-primary">
+                        Continue Shopping
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!--FOOTER SECTION -->
+        <th:block th:replace="fragments/footer :: footer"></th:block>
+        <!-- END FOOTER SECTION -->
+    </body>
+</html>
