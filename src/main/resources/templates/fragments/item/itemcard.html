@@ -10,7 +10,7 @@
             >
                 <img
                     src="https://source.unsplash.com/random/400x300?shirt"
-                    th:src="'https://source.unsplash.com/random/400x300?shirt&sig=' + ${#strings.randomAlphanumeric(10)}"
+                    th:src="${item.getImageId()} ? 'https://images.unsplash.com/'+${item.getImageId()}+'?crop=entropy&fit=crop&fm=png&h=300&w=400' : 'https://source.unsplash.com/random/400x300?shirt&sig='+${#strings.randomAlphanumeric(15)}"
                     class="card-img-top"
                     alt="Apparel photo"
                     th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"

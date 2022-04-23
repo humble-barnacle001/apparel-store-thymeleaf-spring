@@ -17,6 +17,7 @@ public class Item {
     private List<String> tags;
     private boolean isNew;
     private boolean isSale;
+    private String imageId;
 
     public String getId() {
         return id;
@@ -72,9 +73,18 @@ public class Item {
         return this;
     }
 
+    public String getImageId() {
+        return imageId;
+    }
+
+    public Item setImageId(String imageId) {
+        this.imageId = imageId;
+        return this;
+    }
+
     public String toString() {
         return String.format(
-                "Item{id=%s, name='%s', cost='%f',tags=['%s'], Is new='%b', On sale='%b'}",
-                id, name, cost, String.join(", ", tags), isNew, isSale);
+                "Item{id=%s, name='%s', cost='%f',tags=['%s'], Is new='%b', On sale='%b', Image='%s'}",
+                id, name, cost, String.join(", ", tags), isNew, isSale, imageId);
     }
 }
