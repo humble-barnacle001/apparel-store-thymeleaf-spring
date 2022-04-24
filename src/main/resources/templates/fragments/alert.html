@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head></head>
+    <body>
+        <th:block th:fragment="alert(message, icon, type)">
+            <div
+                class="alert alert-dismissible fade show"
+                th:classappend="${type} ? 'alert-'+${type} : 'alert-danger'"
+                role="alert"
+            >
+                <p class="my-0">
+                    <i
+                        class="bi"
+                        th:classappend="${icon} ? 'bi-'+${icon} : 'bi-exclamation-triangle-fill'"
+                    ></i>
+                    <span th:text="${message}"></span>
+                </p>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
+            </div>
+        </th:block>
+    </body>
+</html>

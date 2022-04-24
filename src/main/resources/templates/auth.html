@@ -16,38 +16,16 @@
         <!--AUTH SECTION-->
         <main class="container">
             <!--AUTH ALERTS SECTION-->
-            <div
-                class="alert alert-danger alert-dismissible fade show"
-                role="alert"
-                th:if="${param.error}"
-            >
-                <p class="my-0">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-                    Invalid Credentials provided
-                </p>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                ></button>
-            </div>
-            <div
-                class="alert alert-success alert-dismissible fade show"
-                role="alert"
-                th:if="${param.logout}"
-            >
-                <p class="my-0">
-                    <i class="bi bi-check-circle-fill"></i>
-                    Log Out Successful
-                </p>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                ></button>
-            </div>
+            <th:block th:if="${param.error}">
+                <th:block
+                    th:replace="fragments/alert :: alert('Invalid Credentials provided', 'exclamation-triangle-fill', 'danger')"
+                ></th:block>
+            </th:block>
+            <th:block th:if="${param.logout}">
+                <th:block
+                    th:replace="fragments/alert :: alert('Log Out Successful', 'check-circle-fill', 'success')"
+                ></th:block>
+            </th:block>
             <!--END AUTH ALERTS SECTION-->
 
             <div class="row full-height justify-content-center">

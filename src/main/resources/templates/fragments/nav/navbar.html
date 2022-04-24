@@ -67,24 +67,12 @@
             <!-- Fixes issue with fixed navbar -->
             <div class="pb-5 mb-5"></div>
 
-            <section class="container">
-                <div
-                    class="alert alert-dismissible fade show"
-                    th:classappend="${customAlertType} ? ${customAlertType} : 'alert-danger'"
-                    role="alert"
-                    th:if="${customAlert}"
-                >
-                    <p class="my-0">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                        <span th:text="${customAlert}"></span>
-                    </p>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="alert"
-                        aria-label="Close"
-                    ></button>
-                </div>
+            <section class="container" id="alert-container">
+                <th:block th:if="${alertMessage}">
+                    <th:block
+                        th:replace="fragments/alert :: alert(${alertMessage}, ${alertIcon}, ${alertType})"
+                    ></th:block>
+                </th:block>
             </section>
         </th:block>
     </body>

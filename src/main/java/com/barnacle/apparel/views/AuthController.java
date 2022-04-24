@@ -58,7 +58,7 @@ public class AuthController {
             se.printStackTrace();
             customAlert = "Server error occured";
         }
-        model.addAttribute("customAlert", customAlert);
+        model.addAttribute("alertMessage", customAlert);
         return "auth";
     }
 }
