@@ -39,9 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/search", "/orders").authenticated()
-                .antMatchers("/buy/**").hasRole("USER")
-                .antMatchers("/dashboard").hasRole("ADMIN")
+                .antMatchers("/search").authenticated()
+                .antMatchers("/buy/**", "/orders").hasRole("USER")
+                .antMatchers("/dashboard", "/item/**").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/auth")
@@ -50,6 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .and()
                 .headers().httpStrictTransportSecurity()
-                .includeSubDomains(true).maxAgeInSeconds(24 * 3600);
+                .includeSubDomains(true).maxAgeInSeconds(24 * 2 * 3600);
     }
 }
