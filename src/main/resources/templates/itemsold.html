@@ -29,7 +29,11 @@
                     <h2 class="text-center text-danger py-5">Item not found</h2>
                 </th:block>
                 <div class="mt-5 text-end">
-                    <a href="/" class="btn btn-primary">
+                    <a
+                        href="/"
+                        onclick="event.preventDefault();window.history.go(-1);"
+                        class="btn btn-primary"
+                    >
                         Continue Shopping
                         <i class="bi bi-arrow-right"></i>
                     </a>
