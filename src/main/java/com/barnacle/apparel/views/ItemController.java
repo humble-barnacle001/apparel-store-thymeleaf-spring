@@ -40,4 +40,10 @@ public class ItemController {
         model.addAttribute("onSoldPage", true);
         return "itemsold";
     }
+
+    @GetMapping("/orders")
+    public String getOrders(Model model) {
+        model.addAttribute("orders", orderService.getAllOrders());
+        return "orders";
+    }
 }

@@ -2,31 +2,22 @@ package com.barnacle.apparel.models;
 
 import java.util.Date;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.FieldType;
 
-@Document
-public class Order {
+public class OrderItem {
     @Id
     private String id;
-    @Indexed
-    @Field(targetType = FieldType.OBJECT_ID)
     private String buyerId;
-    @Field(targetType = FieldType.OBJECT_ID)
     private String itemId;
-    @CreatedDate
     private Date orderOn;
+    private Item item;
     private float cost;
 
     public String getId() {
         return id;
     }
 
-    public Order setId(String id) {
+    public OrderItem setId(String id) {
         this.id = id;
         return this;
     }
@@ -35,7 +26,7 @@ public class Order {
         return buyerId;
     }
 
-    public Order setBuyerId(String buyerId) {
+    public OrderItem setBuyerId(String buyerId) {
         this.buyerId = buyerId;
         return this;
     }
@@ -44,7 +35,7 @@ public class Order {
         return itemId;
     }
 
-    public Order setItemId(String itemId) {
+    public OrderItem setItemId(String itemId) {
         this.itemId = itemId;
         return this;
     }
@@ -53,8 +44,17 @@ public class Order {
         return orderOn;
     }
 
-    public Order setOrderOn(Date orderOn) {
+    public OrderItem setOrderOn(Date orderOn) {
         this.orderOn = orderOn;
+        return this;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public OrderItem setItem(Item item) {
+        this.item = item;
         return this;
     }
 
@@ -62,7 +62,7 @@ public class Order {
         return cost;
     }
 
-    public Order setCost(Float cost) {
+    public OrderItem setCost(Float cost) {
         this.cost = cost;
         return this;
     }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head></head>
+    <body>
+        <th:block th:fragment="orderlist(orders)">
+            <th:block th:each="order:${orders}">
+                <div
+                    th:id="'order-' + ${order.getId()}"
+                    class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-stretch"
+                >
+                    <div class="card mx-auto">
+                        <div class="card-header">
+                            Order ID:
+                            <span th:text="${order.getId()}"></span>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h2 class="card-title text-info">
+                                <span
+                                    th:text="${order.getItem().getName()}"
+                                ></span>
+                            </h2>
+                            <h3 class="mb-2 text-danger">
+                                &#8377;
+                                <span
+                                    th:text="${order.getCost()>0 ? order.getCost() : order.item.getCost()}"
+                                >
+                                    1000.52
+                                </span>
+                            </h3>
+                            <p class="text-success">
+                                Purchased on:
+                                <span
+                                    th:text="${#dates.format(order.getOrderOn(), 'dd-MM-yyyy HH:mm')}"
+                                ></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+        </th:block>
+    </body>
+</html>

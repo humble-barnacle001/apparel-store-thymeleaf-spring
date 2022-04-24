@@ -1,11 +1,14 @@
 package com.barnacle.apparel.service;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import com.barnacle.apparel.models.Item;
 import com.barnacle.apparel.models.ItemRepository;
 import com.barnacle.apparel.models.Order;
+import com.barnacle.apparel.models.OrderItem;
 import com.barnacle.apparel.models.OrderRepository;
 import com.barnacle.apparel.models.UserRepository;
 
@@ -44,6 +47,7 @@ public class OrderService {
                     userRepository.save(user);
                     orderRepository.save(
                             new Order()
+                                    .setCost(item.getCost())
                                     .setBuyerId(user.getId())
                                     .setItemId(item.getId())
                                     .setOrderOn(new Date()));
@@ -53,5 +57,19 @@ public class OrderService {
             e.printStackTrace();
         }
         return oItem;
+    }
+
+    public List<OrderItem> getAllOrders() {
+        try {
+            User u = (User) userService.getCurrAuthentication().getPrincipal();
+            if (u != null) {
+                com.barnacle.apparel.models.User user;
+                user = userRepository.findByUsername(u.getUsername());
+                return orderRepository.findOrderByBuyerId(user.getId()).getMappedResults();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Collections.emptyList();
     }
 }

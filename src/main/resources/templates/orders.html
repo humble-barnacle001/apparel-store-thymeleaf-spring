@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <th:block th:include="fragments/head :: head(Orders)"></th:block>
+    </head>
+
+    <body>
+        <!-- NAV SECTION -->
+        <th:block th:replace="fragments/nav/navbar :: navbar(3)"></th:block>
+        <!--END NAV SECTION -->
+
+        <!-- ORDERS SECTION -->
+        <section>
+            <div class="container my-3 py-3">
+                <div th:if="${orders.size() > 0}" id="orders" class="row my-3">
+                    <th:block
+                        th:replace="fragments/item/orderlist :: orderlist(${orders})"
+                    ></th:block>
+                </div>
+                <div th:unless="${orders.size() > 0}">
+                    <h3 class="text-danger text-center">No orders found</h3>
+                </div>
+                <div class="mt-5 text-center">
+                    <a th:href="@{/}" class="btn btn-primary">
+                        <i class="bi bi-cart4"></i>
+                        <span th:if="${orders.size() > 0}">Continue</span>
+                        <span th:unless="${orders.size() > 0}">Start</span>
+                        Shopping
+                    </a>
+                </div>
+            </div>
+        </section>
+        <!-- END ORDERS SECTION -->
+
+        <!--FOOTER SECTION -->
+        <th:block th:replace="fragments/footer :: footer"></th:block>
+        <!-- END FOOTER SECTION -->
+    </body>
+</html>
