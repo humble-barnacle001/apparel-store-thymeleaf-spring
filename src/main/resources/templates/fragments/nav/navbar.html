@@ -31,6 +31,10 @@
                     >
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <span
+                                th:replace="fragments/nav/navlink :: navlink('/dashboard','Dashboard',${current},3)"
+                                sec:authorize="hasRole('ROLE_ADMIN')"
+                            ></span>
+                            <span
                                 th:replace="fragments/nav/navlink :: navlink('/new-arrivals','New Arrivals',${current},0)"
                             ></span>
                             <span
@@ -41,6 +45,7 @@
                             ></span>
                             <span
                                 th:replace="fragments/nav/navlink :: navlink('/orders','Orders',${current},3)"
+                                sec:authorize="hasRole('ROLE_USER')"
                             ></span>
                             <span
                                 sec:authorize="isAnonymous()"

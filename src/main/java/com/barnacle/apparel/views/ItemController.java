@@ -17,12 +17,6 @@ public class ItemController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @GetMapping("")
-    public String index(Model model) {
-        model.addAttribute("all", itemRepository.findAll());
-        return "index";
-    }
-
     @GetMapping("/current-sale")
     public String getSalePage(Model model) {
         model.addAttribute("sale", itemRepository.findSaleItems());
