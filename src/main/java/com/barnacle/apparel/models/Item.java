@@ -19,6 +19,7 @@ public class Item {
     private boolean isSale;
     private String imageId;
     private boolean isDeleted;
+    private int buyCount;
 
     public String getId() {
         return id;
@@ -89,6 +90,20 @@ public class Item {
 
     public Item setDeleted(boolean isDeleted) {
         this.isDeleted = isDeleted;
+        return this;
+    }
+
+    public int getBuyCount() {
+        return buyCount;
+    }
+
+    public Item setBuyCount(int buyCount) {
+        this.buyCount = buyCount;
+        return this;
+    }
+
+    public Item incrementBuyCount() {
+        this.buyCount++;
         return this;
     }
 

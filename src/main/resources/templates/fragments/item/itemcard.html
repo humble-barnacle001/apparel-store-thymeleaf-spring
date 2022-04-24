@@ -33,6 +33,14 @@
                     <h2 class="h4 text-center text-break py-3 text-danger">
                         <span th:text="${item.getName()}"> Name </span>
                     </h2>
+                    <p
+                        class="card-text text-info"
+                        sec:authorize="hasRole('ROLE_ADMIN')"
+                    >
+                        - Bought
+                        <span th:text="${item.getBuyCount()}"> 100 </span>
+                        times
+                    </p>
                     <h3 class="h5 mb-2 text-dark">
                         &#8377;
                         <span th:text="${item.getCost()}"> 1000.52 </span>

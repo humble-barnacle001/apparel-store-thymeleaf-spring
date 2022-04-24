@@ -18,6 +18,8 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private Set<UserRole> userRoles;
+    private int buyNewCount;
+    private int buySaleCount;
 
     public String getId() {
         return id;
@@ -66,6 +68,34 @@ public class User implements UserDetails {
         if (userRoles == null)
             userRoles = new HashSet<>();
         userRoles.add(role);
+        return this;
+    }
+
+    public int getBuyNewCount() {
+        return buyNewCount;
+    }
+
+    public User setBuyNewCount(int buyNewCount) {
+        this.buyNewCount = buyNewCount;
+        return this;
+    }
+
+    public User incBuyNewCount() {
+        this.buyNewCount++;
+        return this;
+    }
+
+    public int getBuySaleCount() {
+        return buySaleCount;
+    }
+
+    public User setBuySaleCount(int buySaleCount) {
+        this.buySaleCount = buySaleCount;
+        return this;
+    }
+
+    public User incBuySaleCount() {
+        this.buySaleCount++;
         return this;
     }
 

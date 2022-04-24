@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.barnacle.apparel.models.Item;
 import com.barnacle.apparel.models.ItemRepository;
+import com.barnacle.apparel.service.OrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,9 @@ public class ItemController {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/current-sale")
     public String getSalePage(Model model) {
@@ -31,8 +35,7 @@ public class ItemController {
 
     @GetMapping("/buy/{itemId}")
     public String getUserDetailsById(@PathVariable("itemId") String id, Model model) {
-        // TODO: ADD BUY HABITS TO USER DB
-        Optional<Item> item = itemRepository.findById(id);
+        Optional<Item> item = orderService.addNewOrder(id);
         model.addAttribute("item", item);
         model.addAttribute("onSoldPage", true);
         return "itemsold";

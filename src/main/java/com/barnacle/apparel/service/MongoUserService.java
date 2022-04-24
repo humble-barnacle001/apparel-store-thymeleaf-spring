@@ -7,6 +7,8 @@ import com.barnacle.apparel.models.UserRepository;
 import com.barnacle.apparel.models.UserRole;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,9 @@ public class MongoUserService {
 
     private boolean usernameExists(String username) {
         return userRepository.findByUsername(username) != null;
+    }
+
+    public Authentication getCurrAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
     }
 }
