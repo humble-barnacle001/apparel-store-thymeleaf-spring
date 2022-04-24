@@ -18,6 +18,7 @@ public class Item {
     private boolean isNew;
     private boolean isSale;
     private String imageId;
+    private boolean isDeleted;
 
     public String getId() {
         return id;
@@ -79,6 +80,15 @@ public class Item {
 
     public Item setImageId(String imageId) {
         this.imageId = imageId;
+        return this;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public Item setDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
         return this;
     }
 

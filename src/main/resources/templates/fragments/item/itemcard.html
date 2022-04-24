@@ -62,9 +62,10 @@
                             </a>
                         </th:block>
                         <a
-                            href="#"
-                            class="ms-auto btn btn-danger"
+                            th:attr="data-del-id='item-'+${item.getId()}"
+                            th:href="@{/item/delete/{itemId}(itemId=${item.getId()})}"
                             sec:authorize="hasRole('ROLE_ADMIN')"
+                            class="ms-auto btn btn-danger delete-item"
                         >
                             <i class="bi bi-trash3"></i>
                         </a>

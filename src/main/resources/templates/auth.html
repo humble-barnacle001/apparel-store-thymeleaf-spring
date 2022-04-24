@@ -16,15 +16,17 @@
         <!--AUTH SECTION-->
         <main class="container">
             <!--AUTH ALERTS SECTION-->
-            <th:block th:if="${param.error}">
-                <th:block
-                    th:replace="fragments/alert :: alert('Invalid Credentials provided', 'exclamation-triangle-fill', 'danger')"
-                ></th:block>
-            </th:block>
-            <th:block th:if="${param.logout}">
-                <th:block
-                    th:replace="fragments/alert :: alert('Log Out Successful', 'check-circle-fill', 'success')"
-                ></th:block>
+            <th:block>
+                <th:block th:if="${param.error}">
+                    <th:block
+                        th:replace="fragments/alert :: alert('Invalid Credentials provided', 'exclamation-triangle-fill', 'danger')"
+                    ></th:block>
+                </th:block>
+                <th:block th:if="${param.logout}">
+                    <th:block
+                        th:replace="fragments/alert :: alert('Log Out Successful', 'check-circle-fill', 'success')"
+                    ></th:block>
+                </th:block>
             </th:block>
             <!--END AUTH ALERTS SECTION-->
 

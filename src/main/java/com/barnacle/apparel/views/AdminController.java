@@ -1,11 +1,17 @@
 package com.barnacle.apparel.views;
 
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.barnacle.apparel.models.Item;
 import com.barnacle.apparel.models.ItemRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class AdminController {
@@ -17,5 +23,29 @@ public class AdminController {
     public String dashboard(Model model) {
         model.addAttribute("all", itemRepository.findAll());
         return "dashboard";
+    }
+
+    @GetMapping("/item/delete/{itemId}")
+    public String name(@PathVariable("itemId") String id, Model model, HttpServletResponse response) {
+        String message = "Successfully Deleted", icon = "check-circle-fill", type = "success";
+        try {
+            Optional<Item> oItem = itemRepository.findById(id);
+            if (oItem.isPresent()) {
+                Item item = oItem.get();
+                itemRepository.save(item.setDeleted(true));
+            } else {
+                response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                message = "No such item with id " + id + " exists";
+                icon = "exclamation-triangle-fill";
+                type = "danger";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            message = "Server error";
+            icon = "exclamation-triangle-fill";
+            type = "danger";
+        }
+        return String.format("fragments/alert::alert(message='%s', icon='%s', type='%s')", message, icon, type);
     }
 }

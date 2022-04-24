@@ -2,15 +2,16 @@
 <html lang="en">
     <head></head>
     <body>
-        <div
-            th:fragment="itemlist(items)"
-            th:each="item:${items}"
-            th:id="'item-' + ${item.getId()}"
-            class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-stretch"
-        >
+        <th:block th:fragment="itemlist(items)" th:each="item:${items}">
             <div
-                th:replace="fragments/item/itemcard :: itemcard(${item})"
-            ></div>
-        </div>
+                th:id="'item-' + ${item.getId()}"
+                class="col-12 col-md-6 col-lg-4 mt-3 d-flex align-items-stretch"
+                th:unless="${item.isDeleted()}"
+            >
+                <div
+                    th:replace="fragments/item/itemcard :: itemcard(${item})"
+                ></div>
+            </div>
+        </th:block>
     </body>
 </html>
