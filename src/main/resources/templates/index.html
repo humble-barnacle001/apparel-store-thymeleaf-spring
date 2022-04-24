@@ -3,6 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <th:block th:include="fragments/head :: head(Home)"></th:block>
+        <link rel="stylesheet" href="/css/index.css" />
     </head>
 
     <body>
@@ -10,9 +11,20 @@
         <th:block th:replace="fragments/nav/navbar :: navbar(-2)"></th:block>
         <!--END NAV SECTION -->
 
-        <section>
-            <div class="container my-3 py-3">
-                <h2 class="text-center">Home Page</h2>
+        <section id="index-body">
+            <h1>Hello, Welcome to <span class="bold">Apparel Store</span>!</h1>
+            <p>Let's start shopping</p>
+            <div class="row">
+                <div class="col-12 col-md-6 mb-3">
+                    <a href="/new-arrivals" class="btn btn-primary">
+                        New Arrivals
+                    </a>
+                </div>
+                <div class="col-12 col-md-6">
+                    <a href="/current-sale" class="btn btn-info text-light">
+                        Items on Sale
+                    </a>
+                </div>
             </div>
         </section>
 
