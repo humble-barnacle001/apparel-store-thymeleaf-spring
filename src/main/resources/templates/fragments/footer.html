@@ -24,6 +24,10 @@
                 document.getElementById("footer-copy-date").innerText =
                     new Date().getFullYear();
             </script>
+
+            <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <script src="/js/delItems.js"></script>
+            </th:block>
         </th:block>
     </body>
 </html>
