@@ -7,76 +7,100 @@
 
     <body>
         <!-- NAV SECTION -->
-        <th:block th:replace="fragments/nav/navbar :: navbar(2)"></th:block>
+        <th:block
+            th:replace="fragments/nav/navbar :: navbar(${isSearch} ? -2 : 2)"
+        ></th:block>
         <!--END NAV SECTION -->
 
         <!-- SEARCH SECTION -->
-        <section>
+        <section th:unless="${isSearch}">
             <div class="container my-3 py-3">
                 <form class="row g-3">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12">
                         <div class="form-floating">
                             <input
-                                name="from"
-                                id="from"
+                                name="name"
+                                id="name"
                                 type="text"
                                 class="form-control"
                                 placeholder="city"
                                 required
                             />
-                            <label for="from">Source City</label>
+                            <label for="name">Item Name</label>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-floating">
-                            <input
-                                name="to"
-                                id="to"
-                                type="text"
-                                class="form-control"
-                                placeholder="city"
-                                required
-                            />
-                            <label for="to">Destination City</label>
+                    <div class="col-12">
+                        <label for="customRange2" class="form-label">
+                            Choose maximum price
+                        </label>
+                        <input
+                            disabled
+                            type="number"
+                            class="form-control text-primary"
+                            id="customRange"
+                            th:min="${minRange}"
+                            th:max="${maxRange}"
+                            th:value="${maxRange}"
+                        />
+                        <input
+                            name="range"
+                            type="range"
+                            class="form-range"
+                            th:min="${minRange}"
+                            th:max="${maxRange}"
+                            th:value="${maxRange}"
+                            id="customRange2"
+                        />
+                        <div class="d-flex justify-content-between">
+                            <span th:text="${minRange}"></span>
+                            <span th:text="${maxRange}"></span>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">
+                                <span th:if="${isSearch}">New</span>
                                 Search
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
+            <div class="vh-100"></div>
         </section>
         <!-- END SEARCH SECTION -->
 
         <!-- RESULTS SECTION -->
-        <div class="vh-100" th:unless="${isSearch}"></div>
         <section th:if="${isSearch}">
             <div class="container my-3 py-3">
-                <h2 class="mx-auto text-warning text-center py-3 mb-5">
-                    You searched for flights
-                    <br />
-                    from
-                    <span class="text-info" th:text="${from}"></span>
-                    to
-                    <span class="text-info" th:text="${to}"></span>
-                </h2>
-                <div th:if="${flights.size() > 0}" class="my-3">
-                    <h3 class="text-danger">Direct Flights</h3>
-                    <div th:replace="fragments/directflights :: flights"></div>
+                <div class="mt-5 text-start">
+                    <a
+                        th:href="@{/search}"
+                        onclick="event.preventDefault();window.history.go(-1);"
+                        class="btn btn-primary"
+                    >
+                        <i class="bi bi-arrow-left"></i>
+                        Back to Search
+                    </a>
                 </div>
-                <div th:if="${leggedflights.size() > 0}" class="my-3">
-                    <h3 class="text-danger">Flights with Legs</h3>
+                <h2 class="mx-auto text-warning text-center py-3 mb-5">
+                    You searched for apparel
+                    <span class="text-info" th:text="${name}"></span>
+                    below
+                    <span class="text-info">
+                        &#8377;<span th:text="${range}"></span>
+                    </span>
+                </h2>
+                <div
+                    th:if="${searchResults.size() > 0}"
+                    id="search"
+                    class="row my-3"
+                >
                     <div
-                        th:replace="fragments/indirectflights :: flights"
+                        th:replace="fragments/item/itemlist :: itemlist(${searchResults})"
                     ></div>
                 </div>
-                <div
-                    th:unless="${flights.size() > 0 || leggedflights.size() > 0}"
-                >
+                <div th:unless="${searchResults.size() > 0}">
                     <h3 class="text-danger text-center">No results found</h3>
                 </div>
             </div>
@@ -86,5 +110,20 @@
         <!--FOOTER SECTION -->
         <th:block th:replace="fragments/footer :: footer"></th:block>
         <!-- END FOOTER SECTION -->
+
+        <th:block th:unless="${isSearch}">
+            <script>
+                (() => {
+                    document
+                        .getElementById("customRange2")
+                        .addEventListener(
+                            "change",
+                            (e) =>
+                                (document.getElementById("customRange").value =
+                                    e.target.value)
+                        );
+                })();
+            </script>
+        </th:block>
     </body>
 </html>

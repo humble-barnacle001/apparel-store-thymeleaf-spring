@@ -15,4 +15,7 @@ public interface ItemRepository extends MongoRepository<Item, String> {
 
     @Query("{'isNew': true}")
     List<Item> findNewItems();
+
+    @Query("{'name': {$regex: new RegExp(?0, 'i')}, 'cost': {$lt: ?1}}")
+    List<Item> findByNameBelowCost(String pName, int below);
 }
