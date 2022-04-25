@@ -10,6 +10,152 @@
         <th:block th:replace="fragments/nav/navbar :: navbar(3)"></th:block>
         <!--END NAV SECTION -->
 
+        <div
+            class="modal fade"
+            id="addApparel"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="addApparelLabel"
+            aria-hidden="true"
+        >
+            <div
+                class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addApparelLabel">
+                            Add new apparel
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <form
+                            id="addApparelForm"
+                            name="addApparelForm"
+                            class="row g-3 needs-validation"
+                            th:action="@{/item}"
+                            method="post"
+                            novalidate
+                        >
+                            <div class="col-12">
+                                <label for="apparelName" class="form-label">
+                                    Apparel Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    class="form-control"
+                                    id="apparelName"
+                                    required
+                                />
+                                <div class="invalid-feedback">
+                                    Please type something for name.
+                                </div>
+                                <div class="valid-feedback">Looks good!</div>
+                            </div>
+                            <div class="col-12">
+                                <label for="cost" class="form-label">
+                                    Apparel Cost
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    name="cost"
+                                    type="number"
+                                    class="form-control"
+                                    id="cost"
+                                    min="0"
+                                    required
+                                />
+                                <div class="valid-feedback">Looks good!</div>
+                                <div class="invalid-feedback">
+                                    Please choose a cost above 0.
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="tags" class="form-label">
+                                    Apparel Tags
+                                </label>
+                                <textarea
+                                    type="text"
+                                    name="tags"
+                                    class="form-control"
+                                    id="tags"
+                                    rows="1"
+                                    placeholder="Enter tags seperated by commas"
+                                ></textarea>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check form-switch">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="isNew"
+                                        name="isNew"
+                                        checked
+                                    />
+                                    <label class="form-check-label" for="isNew">
+                                        Is New Arrival?
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check form-switch">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        role="switch"
+                                        id="isSale"
+                                        name="isSale"
+                                    />
+                                    <label
+                                        class="form-check-label"
+                                        for="isSale"
+                                    >
+                                        Is on Sale?
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="apparelImage" class="form-label">
+                                    Image Unsplash ID
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    name="imageId"
+                                    class="form-control"
+                                    id="apparelImage"
+                                    required
+                                />
+                            </div>
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-success">
+                                    Add Apparel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <section>
             <div class="container my-3 py-3">
                 <h2 class="text-center">Our Offerings</h2>
@@ -18,11 +164,24 @@
                         th:replace="fragments/item/itemlist :: itemlist(${all})"
                     ></div>
                 </div>
+                <div class="text-center pt-3">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addApparel"
+                    >
+                        Add new Apparel
+                    </button>
+                </div>
             </div>
         </section>
 
         <!--FOOTER SECTION -->
         <th:block th:replace="fragments/footer :: footer"></th:block>
         <!-- END FOOTER SECTION -->
+
+        <script src="/js/preventSubmitIfInvalid.js"></script>
+        <script src="/js/addItems.js"></script>
     </body>
 </html>
