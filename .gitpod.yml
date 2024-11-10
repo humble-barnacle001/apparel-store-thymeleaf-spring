@@ -9,7 +9,7 @@ vscode:
     - vscjava.vscode-spring-initializr
     - redhat.vscode-xml
     - redhat.fabric8-analytics
-    - pivotal.vscode-boot-dev-pack
-    - pivotal.vscode-spring-boot
+    # - pivotal.vscode-boot-dev-pack
+    # - pivotal.vscode-spring-boot
     - vscjava.vscode-spring-boot-dashboard
     
